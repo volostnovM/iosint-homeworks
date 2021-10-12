@@ -8,7 +8,7 @@ import UIKit
 
 class PostTableViewCell: UITableViewCell {
     
-    var content: Post? {
+    var content: PostVK? {
         didSet {
             postImageView.image = UIImage(named: content!.image)
             titleLabel.text = content?.author

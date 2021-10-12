@@ -35,7 +35,7 @@ class ProfileViewController: UIViewController {
     }()
     
     
-    private var tempStorage: [Post] = [] {
+    private var tempStorage: [PostVK] = [] {
         didSet {
             tableView.reloadData()
         }
@@ -57,6 +57,12 @@ class ProfileViewController: UIViewController {
 
         self.view.backgroundColor = .white
         self.view.addSubview(tableView)
+        
+        #if DEBUG
+        tableView.backgroundColor = .green
+        #else
+        tableView.backgroundColor = .blue
+        #endif
         
         setupTableView()
         setupConstraints()

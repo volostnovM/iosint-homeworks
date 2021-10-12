@@ -5,7 +5,7 @@
 
 import Foundation
 
-struct Post {
+struct PostVK {
     let author: String
     let description: String
     let image: String
@@ -16,28 +16,28 @@ struct Post {
 struct Storage {
     
    static let arrayPost = [
-        Post(
+    PostVK(
             author: "Ivan",
             description: "Интересный пост от Ивана",
             image: "public_1",
             likes: 5,
             views: 255
         ),
-        Post(
+    PostVK(
             author: "Masha",
             description: "Интересный пост от Маши",
             image: "public_2",
             likes: 15,
             views: 5000
         ),
-        Post(
+    PostVK(
             author: "Dasha",
             description: "Интересный пост от Даши",
             image: "public_3",
             likes: 52,
             views: 300
         ),
-        Post(
+    PostVK(
             author: "Petr",
             description: "Интересный пост от Петра",
             image: "public_4",
