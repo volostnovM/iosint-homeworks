@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ProfileHederView: UITableViewHeaderFooterView {
     
@@ -132,41 +133,46 @@ private extension ProfileHederView{
         profileHeaderView.addSubview(statusLabel)
         profileHeaderView.addSubview(statusTextField)
         profileHeaderView.addSubview(setStatusButton)
-                     
-        let constraints = [
-                  
-            profileHeaderView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            profileHeaderView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            profileHeaderView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            profileHeaderView.heightAnchor.constraint(equalToConstant: 220),
-            
-            avatarImageView.topAnchor.constraint(equalTo: profileHeaderView.topAnchor, constant: 16),
-            avatarImageView.leadingAnchor.constraint(equalTo: profileHeaderView.leadingAnchor, constant: 16),
-            avatarImageView.heightAnchor.constraint(equalToConstant: 110),
-            avatarImageView.widthAnchor.constraint(equalToConstant: 110),
-            
-            fullNameLabel.topAnchor.constraint(equalTo: profileHeaderView.topAnchor, constant: 27),
-            fullNameLabel.heightAnchor.constraint(equalToConstant: 30),
-            fullNameLabel.leadingAnchor.constraint(equalTo: profileHeaderView.leadingAnchor, constant: 132),
-            fullNameLabel.widthAnchor.constraint(equalToConstant: 180),
-            
-            statusLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: 25),
-            statusLabel.leadingAnchor.constraint(equalTo: profileHeaderView.leadingAnchor, constant: 132),
-            statusLabel.rightAnchor.constraint(equalTo: profileHeaderView.rightAnchor, constant: -16),
-            statusLabel.heightAnchor.constraint(equalToConstant: 14),
-            
-            statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 10),
-            statusTextField.heightAnchor.constraint(equalToConstant: 40),
-            statusTextField.leadingAnchor.constraint(equalTo: profileHeaderView.leadingAnchor, constant: 132),
-            statusTextField.rightAnchor.constraint(equalTo: profileHeaderView.rightAnchor, constant: -16),
-            
-            setStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: 16),
-            setStatusButton.rightAnchor.constraint(equalTo: profileHeaderView.rightAnchor, constant: -16),
-            setStatusButton.leftAnchor.constraint(equalTo: profileHeaderView.leftAnchor, constant: 16),
-            setStatusButton.heightAnchor.constraint(equalToConstant: 50)
         
-        ]
+        profileHeaderView.snp.makeConstraints{(make) -> Void in
+            make.top.equalTo(safeAreaLayoutGuide)
+            make.left.equalTo(safeAreaLayoutGuide)
+            make.right.equalTo(safeAreaLayoutGuide)
+            make.height.equalTo(220)
+        }
+        
+        avatarImageView.snp.makeConstraints{(make) -> Void in
+            make.top.equalTo(profileHeaderView).offset(16)
+            make.left.equalTo(profileHeaderView).offset(16)
+            make.width.height.equalTo(110)
+        }
+        
+        fullNameLabel.snp.makeConstraints{(make) -> Void in
+            make.top.equalTo(profileHeaderView).offset(27)
+            make.left.equalTo(profileHeaderView).offset(132)
+            make.height.equalTo(30)
+            make.width.equalTo(180)
+        }
+        
+        statusLabel.snp.makeConstraints{(make) -> Void in
+            make.top.equalTo(fullNameLabel.snp.bottom).offset(25)
+            make.left.equalTo(profileHeaderView).offset(132)
+            make.right.equalTo(profileHeaderView).offset(-16)
+            make.height.equalTo(14)
+        }
 
-        NSLayoutConstraint.activate(constraints)
+        statusTextField.snp.makeConstraints{(make) -> Void in
+            make.top.equalTo(statusLabel.snp.bottom).offset(10)
+            make.left.equalTo(profileHeaderView).offset(132)
+            make.right.equalTo(profileHeaderView).offset(-16)
+            make.height.equalTo(40)
+        }
+
+        setStatusButton.snp.makeConstraints{(make) -> Void in
+            make.top.equalTo(statusTextField.snp.bottom).offset(16)
+            make.left.equalTo(profileHeaderView).offset(16)
+            make.right.equalTo(profileHeaderView).offset(-16)
+            make.height.equalTo(50)
+        }
     }
 }

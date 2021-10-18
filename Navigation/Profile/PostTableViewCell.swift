@@ -4,17 +4,26 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 
 class PostTableViewCell: UITableViewCell {
     
+    private let imageProcessor = ImageProcessor()
+    private let filters: [ColorFilter] = ColorFilter.allCases
+    
     var content: PostVK? {
         didSet {
-            postImageView.image = UIImage(named: content!.image)
             titleLabel.text = content?.author
             descriptionLabel.text = content?.description
             likeLabel.text = "Likes: " + String(content!.likes)
             viewsLabel.text = "Views: " + String(content!.views)
+            
+            if let image = UIImage(named: content!.image) {
+                imageProcessor.processImage(sourceImage: image, filter: filters.randomElement() ?? .chrome) {
+                    (image) in postImageView.image = image
+                }
+            }
         }
     }
 
