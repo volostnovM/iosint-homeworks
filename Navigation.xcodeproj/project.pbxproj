@@ -16,6 +16,10 @@
 		060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782C5250CEB0A00A87020 /* InfoViewController.swift */; };
 		060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782C7250CEE5D00A87020 /* PostViewController.swift */; };
 		2E6B2B27AA813D028A4FEADB /* Pods_StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8E81C8E1E782D29C8925F26 /* Pods_StorageService.framework */; };
+		9F37E2992720066400A278AD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F37E2982720066400A278AD /* User.swift */; };
+		9F37E29D2720099400A278AD /* UserServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F37E29C2720099400A278AD /* UserServiceProtocol.swift */; };
+		9F37E2A1272009B700A278AD /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F37E2A0272009B700A278AD /* CurrentUserService.swift */; };
+		9F37E2A9272010DD00A278AD /* TestUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F37E2A8272010DD00A278AD /* TestUser.swift */; };
 		9F3DBADC26A7F25800077DA4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3DBADB26A7F25800077DA4 /* ProfileViewController.swift */; };
 		9F44A0DE26BAC73F0051A292 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F44A0DD26BAC73F0051A292 /* PhotosTableViewCell.swift */; };
 		9F51B4BA2715B69F0010D670 /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F51B4AA2715B69E0010D670 /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -72,6 +76,10 @@
 		2E25261A88874A8AEE3D4E20 /* Pods_Navigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Navigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		666339EA44E609F884F6ED10 /* Pods-StorageService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService.release.xcconfig"; path = "Target Support Files/Pods-StorageService/Pods-StorageService.release.xcconfig"; sourceTree = "<group>"; };
 		8635B0525C557B658BC8C3B5 /* Pods-Navigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.release.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.release.xcconfig"; sourceTree = "<group>"; };
+		9F37E2982720066400A278AD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		9F37E29C2720099400A278AD /* UserServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceProtocol.swift; sourceTree = "<group>"; };
+		9F37E2A0272009B700A278AD /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
+		9F37E2A8272010DD00A278AD /* TestUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUser.swift; sourceTree = "<group>"; };
 		9F3DBADB26A7F25800077DA4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9F44A0DD26BAC73F0051A292 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		9F51B4A82715B69E0010D670 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,6 +152,7 @@
 				060782BF250CE27A00A87020 /* Info.plist */,
 				060782C5250CEB0A00A87020 /* InfoViewController.swift */,
 				060782C7250CEE5D00A87020 /* PostViewController.swift */,
+				9F37E29B2720097600A278AD /* User */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -166,6 +175,17 @@
 				C8E81C8E1E782D29C8925F26 /* Pods_StorageService.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9F37E29B2720097600A278AD /* User */ = {
+			isa = PBXGroup;
+			children = (
+				9F37E2982720066400A278AD /* User.swift */,
+				9F37E29C2720099400A278AD /* UserServiceProtocol.swift */,
+				9F37E2A0272009B700A278AD /* CurrentUserService.swift */,
+				9F37E2A8272010DD00A278AD /* TestUser.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		9F3DBAD326A7F06000077DA4 /* Profile */ = {
@@ -388,17 +408,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F37E2A1272009B700A278AD /* CurrentUserService.swift in Sources */,
 				9F9A634B26BD13D9004563EE /* Photo.swift in Sources */,
 				9F9A635226BD25C7004563EE /* PhotosCollectionViewCell.swift in Sources */,
 				9F9A634E26BD1EA7004563EE /* PhotosViewController.swift in Sources */,
 				060782B6250CE27700A87020 /* FeedViewController.swift in Sources */,
 				9FBBEA6F26B4381500E6CD7A /* ProfileTableHederView.swift in Sources */,
 				9F51B4CD2715B72B0010D670 /* PostStorage.swift in Sources */,
+				9F37E29D2720099400A278AD /* UserServiceProtocol.swift in Sources */,
 				060782B2250CE27700A87020 /* AppDelegate.swift in Sources */,
 				9F44A0DE26BAC73F0051A292 /* PhotosTableViewCell.swift in Sources */,
+				9F37E2992720066400A278AD /* User.swift in Sources */,
 				9F7CD09826B2DB90003714A3 /* LogInViewController.swift in Sources */,
 				060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */,
 				060782B4250CE27700A87020 /* SceneDelegate.swift in Sources */,
+				9F37E2A9272010DD00A278AD /* TestUser.swift in Sources */,
 				9F3DBADC26A7F25800077DA4 /* ProfileViewController.swift in Sources */,
 				9F8A8FAB26B8298900DC5DFC /* PostTableViewCell.swift in Sources */,
 				060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */,

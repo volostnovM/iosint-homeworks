@@ -9,6 +9,19 @@ class ProfileViewController: UIViewController {
     
     let header = ProfileHederView()
     
+    let userService: UserServiceProtocol
+    let userName: String
+    
+    init(userService: UserServiceProtocol, userName: String) {
+        self.userService = userService
+        self.userName = userName
+        super.init(nibName: nil, bundle: nil)
+        }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     var backgroundView1: UIView = {
         let backview = UIView()
         backview.translatesAutoresizingMaskIntoConstraints = false
@@ -178,6 +191,13 @@ extension ProfileViewController: UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let userInfo = userService.sendUser(userName: userName)
+        
+        header.fullNameLabel.text = userInfo?.userName
+        header.avatarImageView.image = userInfo?.userAvatar
+        header.statusLabel.text = userInfo?.userStatus
+        
         let tapGest = UITapGestureRecognizer(target: self, action: #selector(tap))
         header.avatarImageView.addGestureRecognizer(tapGest)
         

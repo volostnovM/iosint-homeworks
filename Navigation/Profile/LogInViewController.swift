@@ -105,9 +105,19 @@ class LogInViewController: UIViewController {
 
     
     @objc func pressLoginButton() {
-         let profileVC = ProfileViewController()
-         navigationController?.isNavigationBarHidden = true
-         navigationController?.pushViewController(profileVC, animated: true)
+        
+        guard let text = loginTextField.text else {return}
+        let user: UserServiceProtocol
+        
+        #if DEBUG
+        user = TestUser()
+        #else
+        user = CurrentUserService()
+        #endif
+        
+        let profileVC = ProfileViewController(userService: user, userName: text)
+        navigationController?.isNavigationBarHidden = true
+        navigationController?.pushViewController(profileVC, animated: true)
     }
 }
 
