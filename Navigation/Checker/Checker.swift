@@ -4,8 +4,8 @@ class Checker: LoginViewControllerDelegate {
     
     static let shared: Checker = .init()
     
-    private let loginUser = "Volostnov"
-    private let pswdUser = "!QAZ2wsx"
+    private let loginUser = "1"
+    private let pswdUser = "1"
     
     func checkLoginPassword(login: String, password: String) -> Bool {
         if (loginUser == login && pswdUser == password) {

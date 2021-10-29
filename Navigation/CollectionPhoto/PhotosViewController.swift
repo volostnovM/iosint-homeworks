@@ -4,14 +4,13 @@
 //
 
 import UIKit
+import iOSIntPackage
 
-class PhotosViewController: UIViewController {
+class PhotosViewController: UIViewController, ImageLibrarySubscriber {
 
-    private var tempStorageAllPhoto: [Photo] = [] {
-        didSet {
-            collectionView.reloadData()
-        }
-    }
+    var imagePublisherFacade = ImagePublisherFacade()
+    var receivedImages: [UIImage] = []
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,14 +18,16 @@ class PhotosViewController: UIViewController {
         view.addSubview(collectionView)
 
         setupView()
-        
-        self.tempStorageAllPhoto = StoragePhoto.arrayPhoto
+        imagePublisherFacade.subscribe(self)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         navigationController?.isNavigationBarHidden = true
+        
+        imagePublisherFacade.removeSubscription(for: self)
+        imagePublisherFacade.rechargeImageLibrary()
     }
     
 
@@ -45,6 +46,11 @@ class PhotosViewController: UIViewController {
         collectionView.delegate = self
         return collectionView
     }()
+    
+    func receive(images: [UIImage]) {
+        receivedImages = images
+        collectionView.reloadData()
+    }
     
 }
 
@@ -97,15 +103,14 @@ extension PhotosViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(StoragePhoto.arrayPhoto.count)
-        return StoragePhoto.arrayPhoto.count
+        return receivedImages.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: PhotosCollectionViewCell.self), for: indexPath) as! PhotosCollectionViewCell
 
-        cell.contentAllPhoto = StoragePhoto.arrayPhoto[indexPath.row]
+        cell.deviceImageView.image = receivedImages[indexPath.row]
     
         return cell
     }
