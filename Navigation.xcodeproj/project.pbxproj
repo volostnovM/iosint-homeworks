@@ -37,20 +37,10 @@
 		9F9A634B26BD13D9004563EE /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A634A26BD13D9004563EE /* Photo.swift */; };
 		9F9A634E26BD1EA7004563EE /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A634D26BD1EA7004563EE /* PhotosViewController.swift */; };
 		9F9A635226BD25C7004563EE /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A635126BD25C7004563EE /* PhotosCollectionViewCell.swift */; };
+		9FB0BA53272BDB6700086753 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 9FB0BA52272BDB6700086753 /* iOSIntPackage */; };
 		9FBBEA6F26B4381500E6CD7A /* ProfileTableHederView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBBEA6E26B4381500E6CD7A /* ProfileTableHederView.swift */; };
-		9FEBC490271D9C3900B99B8F /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 9FEBC48F271D9C3900B99B8F /* iOSIntPackage */; };
 		E6D7CD2DE0EC402288470175 /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E25261A88874A8AEE3D4E20 /* Pods_Navigation.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		9F51B4BB2715B69F0010D670 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 060782A6250CE27700A87020 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9F51B4A72715B69E0010D670;
-			remoteInfo = StorageService;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		9F51B4BF2715B69F0010D670 /* Embed Frameworks */ = {
@@ -111,7 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FEBC490271D9C3900B99B8F /* iOSIntPackage in Frameworks */,
+				9FB0BA53272BDB6700086753 /* iOSIntPackage in Frameworks */,
 				9F51B4DE2715BAC50010D670 /* StorageService.framework in Frameworks */,
 				E6D7CD2DE0EC402288470175 /* Pods_Navigation.framework in Frameworks */,
 			);
@@ -273,11 +263,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				9F51B4BC2715B69F0010D670 /* PBXTargetDependency */,
 			);
 			name = Navigation;
 			packageProductDependencies = (
-				9FEBC48F271D9C3900B99B8F /* iOSIntPackage */,
+				9FB0BA52272BDB6700086753 /* iOSIntPackage */,
 			);
 			productName = Navigation;
 			productReference = 060782AE250CE27700A87020 /* Navigation.app */;
@@ -330,7 +319,7 @@
 			);
 			mainGroup = 060782A5250CE27700A87020;
 			packageReferences = (
-				9FEBC48E271D9C3900B99B8F /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
+				9FB0BA51272BDB6700086753 /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
 			);
 			productRefGroup = 060782AF250CE27700A87020 /* Products */;
 			projectDirPath = "";
@@ -467,14 +456,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		9F51B4BC2715B69F0010D670 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9F51B4A72715B69E0010D670 /* StorageService */;
-			targetProxy = 9F51B4BB2715B69F0010D670 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		060782B7250CE27700A87020 /* Main.storyboard */ = {
@@ -745,20 +726,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9FEBC48E271D9C3900B99B8F /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
+		9FB0BA51272BDB6700086753 /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TrueMax/iOSIntPackage";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.2.3;
+				branch = imagepublisher;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9FEBC48F271D9C3900B99B8F /* iOSIntPackage */ = {
+		9FB0BA52272BDB6700086753 /* iOSIntPackage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9FEBC48E271D9C3900B99B8F /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
+			package = 9FB0BA51272BDB6700086753 /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
 			productName = iOSIntPackage;
 		};
 /* End XCSwiftPackageProductDependency section */

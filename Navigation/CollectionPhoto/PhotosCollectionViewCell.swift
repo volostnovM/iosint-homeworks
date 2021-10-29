@@ -7,15 +7,6 @@ import UIKit
 
 class PhotosCollectionViewCell: UICollectionViewCell {
     
-    var contentAllPhoto: Photo? {
-        didSet {
-            if let image = contentAllPhoto?.image {
-                deviceImageView.image = UIImage(named: image)
-            }
-        }
-    }
-    
-    
     var deviceImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false

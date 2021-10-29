@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 class ProfileViewController: UIViewController {
     
@@ -81,7 +82,6 @@ class ProfileViewController: UIViewController {
         setupConstraints()
         
         self.tempStorage = Storage.arrayPost
-        self.tempStoragePhoto = StoragePhoto.arrayPhoto
         
         //animation
         self.header.addSubview(self.backgroundView1)
@@ -182,7 +182,21 @@ extension ProfileViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         if indexPath.section == 0 {
+            
+            var imageArray: [UIImage] = []
+            
+            for i in 0...StoragePhoto.collectionModelObserver.count-1 {
+                if let a = UIImage(named: "photo_\(i)") {
+                    imageArray.append(a)
+                } else {continue}
+            }
+            
             let openVC = PhotosViewController()
+            
+            openVC.imagePublisherFacade = ImagePublisherFacade()
+            openVC.imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 20, userImages: imageArray)
+            
+            
             navigationController?.isNavigationBarHidden = false
             openVC.title = "Photo Gallery"
             navigationController?.pushViewController(openVC, animated: true)
@@ -236,8 +250,6 @@ extension ProfileViewController: UITableViewDataSource {
         if indexPath.section == 0 {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: cellPhoto, for: indexPath) as! PhotosTableViewCell
-            
-            cell.contentPhoto = StoragePhoto.arrayPhoto[indexPath.row]
             
             return cell
         }

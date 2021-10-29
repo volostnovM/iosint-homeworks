@@ -53,7 +53,7 @@ class PhotosTableViewCell: UITableViewCell {
 
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
-
+        imageView.image = UIImage(named: "photo_\(arc4random_uniform(20)+1)")
         imageView.layer.cornerRadius = 6
         return imageView
     }()
@@ -63,7 +63,7 @@ class PhotosTableViewCell: UITableViewCell {
 
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
-
+        imageView.image = UIImage(named: "photo_\(arc4random_uniform(20)+1)")
         imageView.layer.cornerRadius = 6
         return imageView
     }()
@@ -73,7 +73,7 @@ class PhotosTableViewCell: UITableViewCell {
 
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
-
+        imageView.image = UIImage(named: "photo_\(arc4random_uniform(20)+1)")
         imageView.layer.cornerRadius = 6
         return imageView
     }()
@@ -83,7 +83,7 @@ class PhotosTableViewCell: UITableViewCell {
 
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
-
+        imageView.image = UIImage(named: "photo_\(arc4random_uniform(20)+1)")
         imageView.layer.cornerRadius = 6
         return imageView
     }()
@@ -162,6 +162,4 @@ extension PhotosTableViewCell: UICollectionViewDataSource {
         let cell = UICollectionViewCell()
         return cell
     }
-    
-    
 }
