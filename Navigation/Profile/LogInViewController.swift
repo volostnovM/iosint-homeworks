@@ -52,19 +52,42 @@ class LogInViewController: UIViewController {
         return textField
     }()
     
-    var entryButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setBackgroundImage(#imageLiteral(resourceName: "pixel"), for: .normal)
-        button.setTitle("Log in", for: .normal)
-        button.setTitleColor(UIColor.init(white: 1, alpha: 1), for: .normal)
-        button.setTitleColor(UIColor.init(white: 1, alpha: 0.8), for: .selected)
-        button.setTitleColor(UIColor.init(white: 1, alpha: 0.8), for: .highlighted)
-        button.setTitleColor(UIColor.init(white: 1, alpha: 0.8), for: .disabled)
-        button.clipsToBounds = true
+//    var entryButton: UIButton = {
+//        let button = UIButton()
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.setBackgroundImage(#imageLiteral(resourceName: "pixel"), for: .normal)
+//        button.setTitle("Log in", for: .normal)
+//        button.setTitleColor(UIColor.init(white: 1, alpha: 1), for: .normal)
+//        button.setTitleColor(UIColor.init(white: 1, alpha: 0.8), for: .selected)
+//        button.setTitleColor(UIColor.init(white: 1, alpha: 0.8), for: .highlighted)
+//        button.setTitleColor(UIColor.init(white: 1, alpha: 0.8), for: .disabled)
+//        button.clipsToBounds = true
+//        button.layer.cornerRadius = 10
+//
+//        button.addTarget(self, action: #selector(pressLoginButton), for: .touchUpInside)
+//        return button
+//    }()
+    
+    private lazy var entryButton: CustomButton = {
+        let button = CustomButton(title: "Log in", titleColor: .white, backgroundColor: nil, backgroundImage: UIImage(imageLiteralResourceName: "pixel"), buttonAction: { [weak self] in
+            #if DEBUG
+            let userServise = TestUserService()
+            #else
+            let userServise = CurrentUserService()
+            #endif
+            if let login = self?.loginTextField.text, !login.isEmpty, let password = self?.passwordTextField.text, !password.isEmpty {
+                if self?.delegate?.checkLoginPassword(login: login, password: password) == true {
+                    let profileVC = ProfileViewController(userService: userServise, userName: login)
+                    self?.navigationController?.pushViewController(profileVC, animated: true)
+                } else {
+                    self?.showAlert()
+                }
+            } else {
+                self?.showAlert()
+            }
+        })
         button.layer.cornerRadius = 10
-        
-        button.addTarget(self, action: #selector(pressLoginButton), for: .touchUpInside)
+        button.clipsToBounds = true
         return button
     }()
     

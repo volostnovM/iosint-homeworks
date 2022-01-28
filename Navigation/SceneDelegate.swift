@@ -12,21 +12,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
+    private let loginInspectorFactory = MyLoginFactory()
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+
+        guard let scene = (scene as? UIWindowScene) else { return }
+        window = UIWindow(windowScene: scene)
+        window?.makeKeyAndVisible()
         
-        // инициализация LoginInspector
+        let tabBarController = UITabBarController()
         
-        if let tabController = window?.rootViewController as? UITabBarController, let loginNavigation = tabController.viewControllers?.last as? UINavigationController, let loginController = loginNavigation.viewControllers.first as? LogInViewController {
-            //loginController.delegate = LoginInspector()
-            
-            loginController.delegate = MyLoginFactory().createLoginInspector()
-        }
+        let feedVC = FeedViewController()
         
+        let loginVC = LogInViewController()
+        loginVC.delegate = loginInspectorFactory.createLoginInspector()
+
+        
+        let feedNavigationVC = UINavigationController(rootViewController: feedVC)
+        feedNavigationVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(named: "feed"), tag: 0)
+        
+        let loginNavigationVC = UINavigationController(rootViewController: loginVC)
+        loginNavigationVC.isNavigationBarHidden = true
+        loginNavigationVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "profile"), tag: 1)
+        
+        tabBarController.viewControllers = [feedNavigationVC, loginNavigationVC]
+        
+        window?.rootViewController = tabBarController
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

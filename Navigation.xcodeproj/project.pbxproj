@@ -33,6 +33,9 @@
 		9F63A0CB272963060075E199 /* ProtocolLoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F63A0CA272963060075E199 /* ProtocolLoginFactory.swift */; };
 		9F63A0CE2729645C0075E199 /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F63A0CD2729645C0075E199 /* LoginFactory.swift */; };
 		9F7CD09826B2DB90003714A3 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7CD09726B2DB90003714A3 /* LogInViewController.swift */; };
+		9F7FD21E27A423220043192E /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7FD21D27A423220043192E /* CustomButton.swift */; };
+		9F7FD22127A423630043192E /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7FD22027A423630043192E /* CustomTextField.swift */; };
+		9F7FD22427A423820043192E /* CheckEnteredWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7FD22327A423820043192E /* CheckEnteredWord.swift */; };
 		9F8A8FAB26B8298900DC5DFC /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8A8FAA26B8298900DC5DFC /* PostTableViewCell.swift */; };
 		9F9A634B26BD13D9004563EE /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A634A26BD13D9004563EE /* Photo.swift */; };
 		9F9A634E26BD1EA7004563EE /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A634D26BD1EA7004563EE /* PhotosViewController.swift */; };
@@ -87,6 +90,9 @@
 		9F63A0CA272963060075E199 /* ProtocolLoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolLoginFactory.swift; sourceTree = "<group>"; };
 		9F63A0CD2729645C0075E199 /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
 		9F7CD09726B2DB90003714A3 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		9F7FD21D27A423220043192E /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		9F7FD22027A423630043192E /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		9F7FD22327A423820043192E /* CheckEnteredWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEnteredWord.swift; sourceTree = "<group>"; };
 		9F8A8FAA26B8298900DC5DFC /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		9F9A634A26BD13D9004563EE /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		9F9A634D26BD1EA7004563EE /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
@@ -141,6 +147,7 @@
 		060782B0250CE27700A87020 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				9F7FD21C27A4230A0043192E /* Models */,
 				9F44A0DC26BAC3CA0051A292 /* CollectionPhoto */,
 				9F3DBAD326A7F06000077DA4 /* Profile */,
 				060782B3250CE27700A87020 /* SceneDelegate.swift */,
@@ -235,6 +242,16 @@
 			path = Checker;
 			sourceTree = "<group>";
 		};
+		9F7FD21C27A4230A0043192E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9F7FD21D27A423220043192E /* CustomButton.swift */,
+				9F7FD22027A423630043192E /* CustomTextField.swift */,
+				9F7FD22327A423820043192E /* CheckEnteredWord.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -298,7 +315,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1170;
+				LastUpgradeCheck = 1240;
 				ORGANIZATIONNAME = "Artem Novichkov";
 				TargetAttributes = {
 					060782AD250CE27700A87020 = {
@@ -429,17 +446,20 @@
 				9F9A634E26BD1EA7004563EE /* PhotosViewController.swift in Sources */,
 				060782B6250CE27700A87020 /* FeedViewController.swift in Sources */,
 				9FBBEA6F26B4381500E6CD7A /* ProfileTableHederView.swift in Sources */,
+				9F7FD22127A423630043192E /* CustomTextField.swift in Sources */,
 				9F51B4CD2715B72B0010D670 /* PostStorage.swift in Sources */,
 				9F37E29D2720099400A278AD /* UserServiceProtocol.swift in Sources */,
 				060782B2250CE27700A87020 /* AppDelegate.swift in Sources */,
 				9F63A0CB272963060075E199 /* ProtocolLoginFactory.swift in Sources */,
 				9F44A0DE26BAC73F0051A292 /* PhotosTableViewCell.swift in Sources */,
 				9F37E2992720066400A278AD /* User.swift in Sources */,
+				9F7FD22427A423820043192E /* CheckEnteredWord.swift in Sources */,
 				9F7CD09826B2DB90003714A3 /* LogInViewController.swift in Sources */,
 				9F63A0CE2729645C0075E199 /* LoginFactory.swift in Sources */,
 				060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */,
 				060782B4250CE27700A87020 /* SceneDelegate.swift in Sources */,
 				9F37E2A9272010DD00A278AD /* TestUser.swift in Sources */,
+				9F7FD21E27A423220043192E /* CustomButton.swift in Sources */,
 				9F3DBADC26A7F25800077DA4 /* ProfileViewController.swift in Sources */,
 				9F8A8FAB26B8298900DC5DFC /* PostTableViewCell.swift in Sources */,
 				060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */,
@@ -503,6 +523,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -527,7 +548,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -563,6 +584,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -581,7 +603,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
