@@ -1,8 +1,13 @@
 import Foundation
 
 class Checker: LoginViewControllerDelegate {
+
+    static var shared: Checker = {
+        let instance = Checker()
+        return instance
+    }()
     
-    static let shared: Checker = .init()
+    private init() {}
     
     private let loginUser = "Volostnov"
     private let pswdUser = "!QAZ2wsx"
