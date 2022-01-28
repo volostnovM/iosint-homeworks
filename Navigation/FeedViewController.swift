@@ -16,14 +16,17 @@ final class FeedViewController: UIViewController {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        print(type(of: self), #function)
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        print(type(of: self), #function)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(type(of: self), #function)
         
         postOldButton.backgroundColor = .green
         postOldButton.setTitle("old post", for: .normal)
