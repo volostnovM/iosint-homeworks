@@ -6,6 +6,8 @@
 import UIKit
 
 class LogInViewController: UIViewController {
+    
+    var delegate: LoginViewControllerDelegate?
 
     let scrollView = UIScrollView()
     let contentView = UIView()
@@ -76,8 +78,6 @@ class LogInViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
-        print(scrollView.contentSize)
     }
     
     
@@ -106,7 +106,9 @@ class LogInViewController: UIViewController {
     
     @objc func pressLoginButton() {
         
-        guard let text = loginTextField.text else {return}
+        guard let login = loginTextField.text else {return}
+        guard let password = passwordTextField.text else {return}
+            
         let user: UserServiceProtocol
         
         #if DEBUG
@@ -115,9 +117,23 @@ class LogInViewController: UIViewController {
         user = CurrentUserService()
         #endif
         
-        let profileVC = ProfileViewController(userService: user, userName: text)
-        navigationController?.isNavigationBarHidden = true
-        navigationController?.pushViewController(profileVC, animated: true)
+        if let resultEnter = delegate?.checkLoginPassword(login: login, password: password), resultEnter == true {
+            let profileVC = ProfileViewController(userService: user, userName: login)
+            navigationController?.isNavigationBarHidden = true
+            navigationController?.pushViewController(profileVC, animated: true)
+        }
+        else {
+            return showAlert()
+        }
+    }
+    
+    
+    private func showAlert() {
+        let alertController = UIAlertController(title: "Ошибка", message: "Неверное имя пользователя или пароль", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ок", style: .default)
+        
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 }
 
@@ -198,3 +214,4 @@ private extension LogInViewController {
         scrollView.verticalScrollIndicatorInsets = .zero
     }
 }
+
