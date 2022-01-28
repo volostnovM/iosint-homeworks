@@ -47,24 +47,19 @@ class ProfileHederView: UITableViewHeaderFooterView {
             return imageView
         }()
     
-
-        
-        var setStatusButton: UIButton = {
-            let button = UIButton()
-            button.backgroundColor = UIColor.blue
-            button.setTitleColor(UIColor.white, for: .normal)
-            button.setTitle("Show status", for: .normal)
-            button.addTarget(self, action: #selector(pressButtonWriteStatus), for: .touchUpInside)
-            button.clipsToBounds = true
-            button.layer.shadowColor = UIColor.black.cgColor
-            button.layer.shadowRadius = 4
-            button.layer.shadowOpacity = 0.7
-            button.layer.shadowOffset = CGSize(width: 4.0, height: 4.0)
-            button.layer.cornerRadius = 4
-
-            button.translatesAutoresizingMaskIntoConstraints = false
-            return button
-        }()
+    
+    private lazy var setStatusButton: CustomButton = {
+        let button = CustomButton(title: "Set status", titleColor: .white, backgroundColor: nil, backgroundImage: UIImage(imageLiteralResourceName: "pixel"), buttonAction: { [weak self] in
+            if ((self?.statusText?.isEmpty) != nil) {
+                self?.statusText = "Set up status"
+            }
+            self?.statusLabel.text = self?.statusText
+            self?.endEditing(true)
+        })
+        button.layer.cornerRadius = 10
+        button.clipsToBounds = true
+        return button
+    }()
 
 
         var statusTextField: UITextField = {
@@ -91,19 +86,19 @@ class ProfileHederView: UITableViewHeaderFooterView {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        nil
     }
     
 
-    @objc func pressButtonWriteStatus() {
-        if let outputStatus = statusText {
-            print(outputStatus)
-            statusLabel.text = outputStatus
-        }
-        else {
-            print("Ничего менять!")
-        }
-    }
+//    @objc func pressButtonWriteStatus() {
+//        if let outputStatus = statusText {
+//            print(outputStatus)
+//            statusLabel.text = outputStatus
+//        }
+//        else {
+//            print("Ничего менять!")
+//        }
+//    }
     
     @objc func textFieldwriteStatus() {
         statusText = statusTextField.text
