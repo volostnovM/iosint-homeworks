@@ -7,14 +7,10 @@ import UIKit
 
 class PhotosTableViewCell: UITableViewCell {
     
-    var contentPhoto: Photo? {
-        didSet {
-            firstPhotoImageView.image = UIImage(named: "photo_1")
-            secondPhotoImageView.image = UIImage(named: "photo_2")
-            thirdPhotoImageView.image = UIImage(named: "photo_3")
-            fourthPhotoImageView.image = UIImage(named: "photo_4")
-        }
-    }
+    private let photosCollectionID = String(describing: PhotosCollectionViewCell.self)
+    private let photoProcessing = PhotoProcessing()
+    
+    private var baseInset: CGFloat { return 12 }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -46,49 +42,13 @@ class PhotosTableViewCell: UITableViewCell {
         return imageView
     }()
     
-
-    
-    var firstPhotoImageView: UIImageView = {
-        let imageView = UIImageView()
-
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "photo_\(arc4random_uniform(20)+1)")
-        imageView.layer.cornerRadius = 6
-        return imageView
+    let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        return collectionView
     }()
-    
-    var secondPhotoImageView: UIImageView = {
-        let imageView = UIImageView()
-
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "photo_\(arc4random_uniform(20)+1)")
-        imageView.layer.cornerRadius = 6
-        return imageView
-    }()
-    
-    var thirdPhotoImageView: UIImageView = {
-        let imageView = UIImageView()
-
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "photo_\(arc4random_uniform(20)+1)")
-        imageView.layer.cornerRadius = 6
-        return imageView
-    }()
-    
-    var fourthPhotoImageView: UIImageView = {
-        let imageView = UIImageView()
-
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "photo_\(arc4random_uniform(20)+1)")
-        imageView.layer.cornerRadius = 6
-        return imageView
-    }()
-    
-    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -106,12 +66,14 @@ extension PhotosTableViewCell {
         
         contentView.addSubview(titleLabel)
         contentView.addSubview(jumpImageView)
-        contentView.addSubview(firstPhotoImageView)
-        contentView.addSubview(secondPhotoImageView)
-        contentView.addSubview(thirdPhotoImageView)
-        contentView.addSubview(fourthPhotoImageView)
+        contentView.addSubview(collectionView)
         
-
+        photoProcessing.processing(completion: {
+            self.collectionView.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: self.photosCollectionID)
+            self.collectionView.dataSource = self
+            self.collectionView.delegate = self
+            self.collectionView.backgroundColor = .white
+        })
         
         let constraints = [
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
@@ -122,44 +84,43 @@ extension PhotosTableViewCell {
             jumpImageView.widthAnchor.constraint(equalToConstant: 30),
             jumpImageView.heightAnchor.constraint(equalToConstant: 30),
             
-            firstPhotoImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
-            firstPhotoImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
-            firstPhotoImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
-            firstPhotoImageView.widthAnchor.constraint(equalToConstant: photoWidth),
-            firstPhotoImageView.heightAnchor.constraint(equalToConstant: photoWidth),
-            
-            secondPhotoImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
-            secondPhotoImageView.leadingAnchor.constraint(equalTo: firstPhotoImageView.trailingAnchor, constant: 8),
-            secondPhotoImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
-            secondPhotoImageView.widthAnchor.constraint(equalToConstant: photoWidth),
-            secondPhotoImageView.heightAnchor.constraint(equalToConstant: photoWidth),
-            
-            thirdPhotoImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
-            thirdPhotoImageView.leadingAnchor.constraint(equalTo: secondPhotoImageView.trailingAnchor, constant: 8),
-            thirdPhotoImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
-            thirdPhotoImageView.widthAnchor.constraint(equalToConstant: photoWidth),
-            thirdPhotoImageView.heightAnchor.constraint(equalToConstant: photoWidth),
-            
-            fourthPhotoImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
-            fourthPhotoImageView.leadingAnchor.constraint(equalTo: thirdPhotoImageView.trailingAnchor, constant: 8),
-            fourthPhotoImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
-            fourthPhotoImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
-            fourthPhotoImageView.widthAnchor.constraint(equalToConstant: photoWidth),
-            fourthPhotoImageView.heightAnchor.constraint(equalToConstant: photoWidth)
+            collectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: baseInset),
+            collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            collectionView.heightAnchor.constraint(equalToConstant: 100)
         ]
-        
         NSLayoutConstraint.activate(constraints)
-        
     }
 }
 
 extension PhotosTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return photoProcessing.processedPhotos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = UICollectionViewCell()
-        return cell
+        let cell: PhotosCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: photosCollectionID, for: indexPath) as! PhotosCollectionViewCell
+           cell.deviceImageView.image = photoProcessing.processedPhotos[indexPath.item]
+           cell.deviceImageView.layer.cornerRadius = 6
+           return cell
+    }
+}
+
+extension PhotosTableViewCell: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt IndexPath: IndexPath) -> CGSize {
+        let width: CGFloat
+        let height: CGFloat
+        width = (collectionView.frame.width - baseInset * 2 - 8 * 3)/4
+        height = collectionView.frame.height - baseInset * 2
+        return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 8
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: baseInset, bottom: baseInset, right: baseInset)
     }
 }
